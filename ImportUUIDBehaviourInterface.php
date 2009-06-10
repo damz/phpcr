@@ -24,17 +24,29 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: ImportUUIDBehaviourInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
- *
+ * The possible actions specified by the uuidBehavior parameter in
+ * Workspace->importXML(), Session->importXML(),
+ * Workspace->getImportContentHandler() and
+ * Session->getImportContentHandler().
+ * *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: ImportUUIDBehaviourInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface phpCR_ImportUUIDBehaviourInterface {
+
+	/**
+	 * The supported behaviors.
+	 */
+	const IMPORT_UUID_COLLISION_REMOVE_EXISTING = 1;
+	const IMPORT_UUID_COLLISION_REPLACE_EXISTING = 2;
+	const IMPORT_UUID_COLLISION_THROW = 3;
+	const IMPORT_UUID_CREATE_NEW = 0;
+
 }
 
 ?>

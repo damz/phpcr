@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Security;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,31 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Security
+ * @version $Id: NamedAccessControlPolicyInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * An NamedAccessControlPolicy is an opaque access control policy that is described
+ * by a JCR name and optionally a description. NamedAccessControlPolicy are
+ * immutable and can therefore be directly applied to a node without additional
+ * configuration step.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Security
+ * @version $Id: NamedAccessControlPolicyInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
-}
+interface NamedAccessControlPolicyInterface extends \F3\PHPCR\Security\AccessControlPolicyInterface {
 
+	/**
+	 * Returns the name of the access control policy, which is JCR name and should
+	 * be unique among the choices applicable to any particular node.
+	 *
+	 * @return string the name of the access control policy. A JCR name.
+	 * @throws \F3\PHPCR\RepositoryException - if an error occurs.
+	 */
+	public function getName();
+
+}
 ?>

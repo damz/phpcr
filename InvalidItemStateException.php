@@ -24,17 +24,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: InvalidItemStateException.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Exception thrown by the write methods of Node and Property and by save and
+ * refresh if an attempted change would conflict with a change to the persistent
+ * workspace made through another Session. Also thrown by methods of Node and
+ * Property if that object represents an item that has been removed from the workspace.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: InvalidItemStateException.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+class phpCR_InvalidItemStateException extends phpCR_RepositoryException {
 }
 
 ?>

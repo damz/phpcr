@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,43 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: SelectorInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
- *
+ * Selects a subset of the nodes in the repository based on node type.
+*
+* A selector selects every node in the repository, subject to access control
+* constraints, that satisfies at least one of the following conditions:
+*
+* the node's primary node type is nodeType, or
+* the node's primary node type is a subtype of nodeType, or
+* the node has a mixin node type that is nodeType, or
+* the node has a mixin node type that is a subtype of nodeType.
+*
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: SelectorInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface SelectorInterface extends \F3\PHPCR\Query\QOM\SourceInterface {
+
+	/**
+	 * Gets the name of the required node type.
+	 *
+	 * @return string the node type name; non-null
+	 */
+	public function getNodeTypeName();
+
+	/**
+	 * Gets the selector name.
+	 * A selector's name can be used elsewhere in the query to identify the selector.
+	 *
+	 * @return the selector name; non-null
+	 */
+	public function getSelectorName();
+
 }
 
 ?>

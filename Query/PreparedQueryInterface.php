@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,32 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: PreparedQueryInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * A prepared query. A new prepared query is created by calling
+ * QueryManager->createPreparedQuery.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: PreparedQueryInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface PreparedQueryInterface extends \F3\PHPCR\Query\QueryInterface {
+
+	/**
+	 * Binds the given value to the variable named $varName.
+	 *
+	 * @param string $varName name of variable in query
+	 * @param \F3\PHPCR\ValueInterface $value value to bind
+	 * @return void
+	 * @throws \InvalidArgumentException if $varName is not a valid variable in this query.
+	 * @throws RepositoryException if an error occurs.
+	 */
+	public function bindValue($varName, \F3\PHPCR\ValueInterface $value);
+
 }
 
 ?>

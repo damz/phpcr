@@ -24,17 +24,36 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: ItemVisitorInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * This interface defines two signatures of the visit method; one taking a
+ * Node, the other a Property. When an object implementing this interface is
+ * passed to Item->accept(ItemVisitor) the appropriate visit method is
+ * automatically called, depending on whether the Item in question is a Node
+ * or a Property. Different implementations of this interface can be written
+ * for different purposes. It is, for example, possible for the visit(Node)
+ * method to call accept on the children of the passed node and thus recurse
+ * through the tree performing some operation on each Item.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: ItemVisitorInterface.php 1811 2009-01-28 12:04:49Z robert $
+ * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface phpCR_ItemVisitorInterface {
+
+	/**
+	 * This method is called when the ItemVisitor is passed to the accept method
+	 * of a Node or Property. If this method throws an exception the visiting
+	 * process is aborted.
+	 *
+	 * @param phpCR_NodeInterface|phpCR_PropertyInterface $item a node or property accepting this visitor
+	 * @throws phpCR_RepositoryException if an error occurs
+	*/
+	public function visit(phpCR_ItemInterface $item);
+
 }
 
 ?>

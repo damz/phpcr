@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,31 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Observation
+ * @version $Id: EventJournalInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * An EventJournal is an extension of EventIterator that provides the additional
+ * method skipTo().
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Observation
+ * @version $Id: EventJournalInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface EventJournalInterface extends \F3\PHPCR\Observation\EventIteratorInterface {
+
+	/**
+	 * Skip all elements of the iterator earlier than date.
+	 * If an attempt is made to skip past the last element of the iterator, no
+	 * exception is thrown but the subsequent EventIterator.nextEvent() will fail.
+	 *
+	 * @param integer value that represents an offset in milliseconds from the epoch.
+	 * @return void
+	 */
+	public function skipTo($date);
+
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,32 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: LengthInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Evaluates to the length (or lengths, if multi-valued) of a property.
+ *
+ * The length should be computed as though the getLength method (or getLengths,
+ * if multi-valued) of \F3\PHPCR\PropertyInterface were called.
+ *
+ * If propertyValue evaluates to null, the Length operand also evaluates to null.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: LengthInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface LengthInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInterface {
+
+	/**
+	 * Gets the property value for which to compute the length.
+	 *
+	 * @return \F3\PHPCR\Query\QOM\PropertyValueInterface the property value; non-null
+	 */
+	public function getPropertyValue();
+
 }
 
 ?>

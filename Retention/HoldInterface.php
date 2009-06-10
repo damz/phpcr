@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Retention;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,40 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Retention
+ * @version $Id: HoldInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Hold represents a hold that can be applied to an existing node in order to
+ * prevent the node from being modified or removed. The format and interpretation
+ * of the name are not specified. They are application-dependent.
+ *
+ * If isDeep() is true, the hold applies to the node and its entire subtree.
+ * Otherwise the hold applies to the node and its properties only.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Retention
+ * @version $Id: HoldInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
-}
+interface HoldInterface {
 
+	/**
+	 * Returns true if this Hold is deep.
+	 *
+	 * @return boolean TRUE if this Hold is deep.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function isDeep();
+
+	/**
+	 * Returns the name of this Hold. A JCR name.
+	 *
+	 * @return string the name of this Hold. A JCR name.
+	 * @throws \F3\PHPCR\RepositoryException if an error occurs.
+	 */
+	public function getName();
+
+}
 ?>

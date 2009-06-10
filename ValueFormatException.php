@@ -2,6 +2,10 @@
 declare(ENCODING = 'utf-8');
 
 
+
+
+
+
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
  *                                                                        *
@@ -24,17 +28,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: ValueFormatException.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Exception thrown when an attempt is made to assign a value to a property
+ * that has an invalid format, given the type of the property. Also thrown
+ * if an attempt is made to read the value of a property using a type-specific
+ * read method of a type into which it is not convertible.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: ValueFormatException.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+class phpCR_ValueFormatException extends phpCR_RepositoryException {
 }
 
 ?>

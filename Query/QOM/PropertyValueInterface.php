@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,42 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: PropertyValueInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Evaluates to the value (or values, if multi-valued) of a property.
+ *
+ * If, for a node-tuple, the selector node does not have a property named property,
+ * the operand evaluates to null.
+ *
+ * The query is invalid if:
+ *
+ * selector is not the name of a selector in the query, or
+ * property is not a syntactically valid JCR name.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: PropertyValueInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface PropertyValueInterface extends \F3\PHPCR\Query\QOM\DynamicOperandInterface {
+
+	/**
+	 * Gets the name of the selector against which to evaluate this operand.
+	 *
+	 * @return string the selector name; non-null
+	 */
+	public function getSelectorName();
+
+	/**
+	 * Gets the name of the property.
+	 *
+	 * @return string the property name; non-null
+	 */
+	public function getPropertyName();
+
 }
 
 ?>

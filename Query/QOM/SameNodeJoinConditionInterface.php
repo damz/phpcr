@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,57 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: SameNodeJoinConditionInterface.php 1979 2009-03-09 15:44:15Z k-fish $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Tests whether two nodes are "the same" according to the isSame method of
+ * javax.jcr.Item.
+ *
+ * If selector2Path is omitted:
+ *  Tests whether the selector1 node is the same as the selector2 node. A
+ *  node-tuple satisfies the constraint only if:
+ *   selector1Node.isSame(selector2Node)
+ *  would return true, where selector1Node is the node for selector1 and
+ *  selector2Node is the node for selector2.
+ *
+ * Otherwise, if selector2Path is specified:
+ *  Tests whether the selector1 node is the same as a node identified by
+ *  relative path from the selector2 node. A node-tuple satisfies the constraint
+ *  only if:
+ *   selector1Node.isSame(selector2Node.getNode(selector2Path))
+ *  would return true, where selector1Node is the node for selector1 and
+ *  selector2Node is the node for selector2.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: SameNodeJoinConditionInterface.php 1979 2009-03-09 15:44:15Z k-fish $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface SameNodeJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditionInterface {
+
+	/**
+	 * Gets the name of the first selector.
+	 *
+	 * @return string the selector name; non-null
+	 */
+	public function getSelector1Name();
+
+	/**
+	 * Gets the name of the second selector.
+	 *
+	 * @return string the selector name; non-null
+	 */
+	public function getSelector2Name();
+
+	/**
+	 * Gets the path relative to the second selector.
+	 *
+	 * @return string the relative path, or null for none
+	 */
+	public function getSelector2Path();
+
 }
 
 ?>

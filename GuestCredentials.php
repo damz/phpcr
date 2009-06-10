@@ -24,17 +24,22 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: GuestCredentials.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * GuestCredentials implements the Credentials interface and is used to obtain
+ * a "guest", "public" or "anonymous" session.
+ * Note that the characteristics of the session created from the
+ * GuestCredentials remain implementation specific.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: GuestCredentials.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @scope prototype
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+final class phpCR_GuestCredentials implements phpCR_CredentialsInterface {
+
 }
 
 ?>

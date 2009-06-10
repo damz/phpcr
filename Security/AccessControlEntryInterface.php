@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Security;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,36 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Security
+ * @version $Id: AccessControlEntryInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * An AccessControlEntry represents the association of one or more Privilege
+ * objects with a specific Principal
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Security
+ * @version $Id: AccessControlEntryInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface AccessControlEntryInterface {
+
+	/**
+	 * Returns the principal associated with this access control entry.
+	 *
+	 * @return java.security.Principal a Principal.
+	 * @todo find replacement for java.security.Principal
+	 */
+	public function getPrincipal();
+
+	/**
+	 * Returns the privileges associated with this access control entry.
+	 *
+	 * @return array an array of Privileges.
+	 */
+	public function getPrivileges();
+
 }
 
 ?>

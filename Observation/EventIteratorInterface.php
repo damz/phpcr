@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,38 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Observation
+ * @version $Id: EventIteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Allows easy iteration through a list of Events with nextEvent as well as a
+ * skip method inherited from RangeIterator.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Observation
+ * @version $Id: EventIteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface EventIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
+
+	/**
+	 * Returns the next Event in the iteration.
+	 *
+	 * @return \F3\PHPCR\Observation\EventInterface the next Event in the iteration
+	 * @throws OutOfBoundsException if iteration has no more Events
+	 */
+	public function nextEvent();
+
+	/**
+	 * Returns the date associated with this event iterator, or null.
+	 * The date is required to be non-null for event iterators obtained through
+	 * an EventJournal.
+	 *
+	 * @return \DateTime the date associated with this event iterator, or null.
+	 */
+	public function getDate();
+
 }
 
 ?>

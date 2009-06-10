@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Observation;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,32 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Observation
+ * @version $Id: EventListenerInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * An event listener.
+ *
+ * An EventListener can be registered via the ObservationManager object. Event
+ * listeners are notified asynchronously, and see events after they occur and
+ * the transaction is committed. An event listener only sees events for which
+ * the session that registered it has sufficient access rights.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Observation
+ * @version $Id: EventListenerInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
-}
+interface EventListenerInterface {
 
+	/**
+	 * This method is called when a bundle of events is dispatched.
+	 *
+	 * @param \F3\PHPCR\Observation\EventIteratorInterface $events - The event set received.
+	 * @return void
+	 */
+	public function onEvent(\F3\PHPCR\Observation\EventIteratorInterface $events);
+
+}
 ?>

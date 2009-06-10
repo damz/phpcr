@@ -1,28 +1,45 @@
 <?php
-/**
- * This file contains {@link PathNotFoundException} which is part of the PHP
- * Content Repository (phpCR), a derivative of the Java Content Repository 
- * JSR-170,  and is licensed under the Apache License, Version 2.0.
- *
- * This file is based on the code created for
- * {@link http://www.jcp.org/en/jsr/detail?id=170 JSR-170}
- *
- * @author Tobias Ebnöther <ebi@liip.ch>
- * @copyright PHP Code Copyright &copy; 2004-2005, Domain51, United States
- * @copyright Original Java and Documentation 
- *    Copyright &copy; 2002-2004, Day Management AG, Switerland
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, 
- *    Version 2.0
- * @package phpContentRepository
- */
+declare(ENCODING = 'utf-8');
 
 
+
+
+
+
+/*                                                                        *
+ * This script belongs to the FLOW3 package "PHPCR".                      *
+ *                                                                        *
+ * It is free software; you can redistribute it and/or modify it under    *
+ * the terms of the GNU Lesser General Public License as published by the *
+ * Free Software Foundation, either version 3 of the License, or (at your *
+ * option) any later version.                                             *
+ *                                                                        *
+ * This script is distributed in the hope that it will be useful, but     *
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
+ * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
+ * General Public License for more details.                               *
+ *                                                                        *
+ * You should have received a copy of the GNU Lesser General Public       *
+ * License along with the script.                                         *
+ * If not, see http://www.gnu.org/licenses/lgpl.html                      *
+ *                                                                        *
+ * The TYPO3 project - inspiring people to share!                         *
+ *                                                                        */
+
 /**
- * Exception thrown when no {@link Workspace} exists for the given name.
- *
- * @package phpContentRepository
+ * @package PHPCR
+ * @version $Id: NoSuchWorkspaceException.php 1811 2009-01-28 12:04:49Z robert $
  */
-class phpCR_NoSuchWorkspaceException extends phpCR_RepositoryException
-{
-    // No need to define anything, it inherits what it needs to.
+
+/**
+ * Exception thrown by Repository.login(Credentials, string) when a specific
+ * workspace is not found.
+ *
+ * @package PHPCR
+ * @version $Id: NoSuchWorkspaceException.php 1811 2009-01-28 12:04:49Z robert $
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ */
+class phpCR_NoSuchWorkspaceException extends phpCR_RepositoryException {
 }
+
+?>

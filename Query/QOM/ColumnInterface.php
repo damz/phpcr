@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,49 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: ColumnInterface.php 1979 2009-03-09 15:44:15Z k-fish $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Defines a column to include in the tabular view of query results.
+ *
+ * If property is not specified, a column is included for each single-valued
+ * non-residual property of the node type specified by the nodeType attribute of
+ * selector.
+ *
+ * If property is specified, columnName is required and used to name the column
+ * in the tabular results. If property is not specified, columnName must not be
+ * specified, and the included columns will be named "selector.propertyName".
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: ColumnInterface.php 1979 2009-03-09 15:44:15Z k-fish $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface ColumnInterface {
+
+	/**
+	 * Gets the name of the selector.
+	 *
+	 * @return string the selector name; non-null
+	 */
+	public function getSelectorName();
+
+	/**
+	 * Gets the name of the property.
+	 *
+	 * @return string the property name, or null to include a column for each single-value non-residual property of the selector's node type
+	 */
+	public function getPropertyName();
+
+	/**
+	 * Gets the column name.
+	 *
+	 * @return string the column name; must be null if getPropertyName is null and non-null otherwise
+	 */
+	public function getColumnName();
+
 }
 
 ?>

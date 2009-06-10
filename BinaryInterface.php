@@ -24,17 +24,52 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: BinaryInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * The Binary interface allows repositories to provide implementations that
+ * handle JCR BINARY values in the most efficient manner, given the specifics
+ * of their internal handling of the binary data.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: BinaryInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface phpCR_BinaryInterface {
+
+	/**
+	 * Returns a stream representation of this value.
+	 * Each call to <code>getStream()</code> returns a new stream.
+	 * The API consumer is responsible for calling <code>close()</code>
+	 * on the returned stream.
+	 *
+	 * @return resource A stream representation of this value.
+	 * @throws phpCR_RepositoryException if another error occurs.
+	 */
+	public function getStream();
+
+	/**
+	 * Reads successive bytes from the specified position in this Binary into
+	 * the passed string until the end of the Binary is encountered.
+	 *
+	 * @param string $bytes the buffer into which the data is read.
+	 * @param integer $position the position in this Binary from which to start reading bytes.
+	 * @return integer the number of bytes read into the buffer
+	 * @throws \RuntimeException if an I/O error occurs.
+	 * @throws \InvalidArgumentException if offset is negative.
+	 * @throws phpCR_RepositoryException if another error occurs.
+	 */
+	public function read(&$bytes, $position);
+
+	/**
+	 * Returns the size of this Binary value in bytes.
+	 *
+	 * @return integer the size of this value in bytes.
+	 * @throws phpCR_RepositoryException if another error occurs.
+	 */
+	public function getSize();
+
 }
 
 ?>

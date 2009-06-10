@@ -2,6 +2,10 @@
 declare(ENCODING = 'utf-8');
 
 
+
+
+
+
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
  *                                                                        *
@@ -24,17 +28,27 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: NodeIteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Allows easy iteration through a list of Nodes with nextNode as well as a skip method
+ * inherited from RangeIterator.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: NodeIteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface phpCR_NodeIteratorInterface extends phpCR_RangeIteratorInterface {
+
+	/**
+	 * Returns the next Node in the iteration.
+	 *
+	 * @return phpCR_NodeInterface
+	 * @throws OutOfBoundsException if the iterator contains no more elements.
+	 */
+	public function nextNode();
+
 }
 
 ?>

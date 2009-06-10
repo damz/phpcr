@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,54 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: EquiJoinConditionInterface.php 1979 2009-03-09 15:44:15Z k-fish $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Tests whether the value of a property in a first selector is equal to the
+ * value of a property in a second selector.
+ *
+ * A node-tuple satisfies the constraint only if:
+ *  selector1 has a property named property1, and
+ *  selector2 has a property named property2, and
+ *  the value of property1 equals the value of property2
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: EquiJoinConditionInterface.php 1979 2009-03-09 15:44:15Z k-fish $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface EquiJoinConditionInterface extends \F3\PHPCR\Query\QOM\JoinConditionInterface {
+
+	/**
+	 * Gets the name of the first selector.
+	 *
+	 * @return string the selector name; non-null
+	 */
+	public function getSelector1Name();
+
+	/**
+	 * Gets the property name in the first selector.
+	 *
+	 * @return string the property name; non-null
+	 */
+	public function getProperty1Name();
+
+	/**
+	 * Gets the name of the second selector.
+	 *
+	 * @return string the selector name; non-null
+	 */
+	public function getSelector2Name();
+
+	/**
+	 * Gets the property name in the second selector.
+	 *
+	 * @return string the property name; non-null
+	 */
+	public function getProperty2Name();
+
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\Query\QOM;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,44 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: QueryObjectModelConstantsInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Defines constants used in the query object model.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage Query
+ * @version $Id: QueryObjectModelConstantsInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface QueryObjectModelConstantsInterface {
+
+	/**
+	 * Join types
+	 */
+	const JOIN_TYPE_INNER = 101;
+	const JOIN_TYPE_LEFT_OUTER = 102;
+	const JOIN_TYPE_RIGHT_OUTER = 103;
+
+	/**
+	 * Operators
+	 */
+	const OPERATOR_EQUAL_TO = 201;
+	const OPERATOR_GREATER_THAN = 205;
+	const OPERATOR_GREATER_THAN_OR_EQUAL_TO = 206;
+	const OPERATOR_LESS_THAN = 203;
+	const OPERATOR_LESS_THAN_OR_EQUAL_TO = 204;
+	const OPERATOR_LIKE = 207;
+	const OPERATOR_NOT_EQUAL_TO = 202;
+
+	/**
+	 * Ordering
+	 */
+	const ORDER_ASCENDING = 301;
+	const ORDER_DESCENDING = 302;
+
 }
 
 ?>

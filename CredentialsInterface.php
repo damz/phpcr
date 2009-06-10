@@ -24,17 +24,20 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: CredentialsInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * Interface for all credentials that may be passed to the
+ * Repository.login(Credentials credentials, String workspaceName) method.
+ * Serves as a marker interface that all repositories must implement when
+ * providing a credentials class. See SimpleCredentials and GuestCredentials
+ * for examples of such a class.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: CredentialsInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
-}
+interface phpCR_CredentialsInterface {}
 
 ?>

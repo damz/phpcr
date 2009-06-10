@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-
+namespace F3\PHPCR\NodeType;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "PHPCR".                      *
@@ -24,17 +24,28 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage NodeType
+ * @version $Id: NodeTypeIteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * An iterator for NodeType objects.
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @subpackage NodeType
+ * @version $Id: NodeTypeIteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
+interface NodeTypeIteratorInterface extends \F3\PHPCR\RangeIteratorInterface {
+
+	/**
+	 * Returns the next NodeType in the iteration.
+	 *
+	 * @return \F3\PHPCR\NodeTypeInterface the next NodeType in the iteration
+	 * @throws OutOfBoundsException if iteration has no more NodeTypes
+	 */
+	public function nextNodeType();
+
 }
 
 ?>

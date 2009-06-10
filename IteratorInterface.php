@@ -24,17 +24,55 @@ declare(ENCODING = 'utf-8');
 
 /**
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: IteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  */
 
 /**
- * Exception thrown by methods of Item, Node and Workspace when an item is not found.
+ * An Iterator interface
+ *
+ * The methods next(), hasNext() and remove() as in java.util.Iterator
+ * append() is something we thought would be nice...
  *
  * @package PHPCR
- * @version $Id: ItemNotFoundException.php 1811 2009-01-28 12:04:49Z robert $
+ * @version $Id: IteratorInterface.php 1811 2009-01-28 12:04:49Z robert $
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class phpCR_ItemNotFoundException extends phpCR_RepositoryException {
-}
+interface phpCR_IteratorInterface extends \Iterator {
 
+	/**
+	 * Returns the next element. Commented as PHP dows not allow overriding methods from extended interfaces...
+	 *
+	 * @return mixed
+	 * @throws OutOfBoundsException if no next element exists
+	 */
+	//public function next();
+
+	/**
+	 * Returns true if the iteration has more elements.
+	 *
+	 * This is an alias of valid().
+	 *
+	 * @return boolean
+	 */
+	public function hasNext();
+
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator.
+	 * This method can be called only once per call to next. The behavior of an iterator
+	 * is unspecified if the underlying collection is modified while the iteration is in
+	 * progress in any way other than by calling this method.
+	 *
+	 * @return void
+	 * @throws IllegalStateException if the next method has not yet been called, or the remove method has already been called after the last call to the next method.
+	 */
+	public function remove();
+
+	/**
+	 * Append a new element to the iteration
+	 *
+	 * @param mixed $element
+	 * @return void
+	 */
+	public function append($element);
+}
 ?>
