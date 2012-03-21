@@ -75,8 +75,7 @@
 
     <body>
         <div class="slide" style="text-align:center">
-            <h1>PHP Content Repository Specification</h1>
-            <h1><a href="http://phpcr.github.com">phpcr.github.com</a></h1>
+            <h1>Open standards<br/>and document oriented storage</h1>
         </div>
 
         <div class="slide" style="text-align:center">
@@ -600,6 +599,54 @@ Tests: 617, Assertions: 4660, Incomplete: 12, Skipped: 130.
                 <li><a href="https://github.com/midgardproject/phpcr-midgard2">Midgard2 CR</a></li>
                 <li><a href="https://github.com/doctrine/phpcr-odm">PHPCR ODM</a></li>
             </ul>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>What does this mean for Drupal?</h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Current state of the game</h2>
+            <h2><img src="drupal-current-status.png" alt="" /></h2>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Step 1: clean-up the API</h2>
+            <h2><img src="drupal-step1.png" alt="" /></h2>
+        </div>
+
+        <div class="slide">
+            <h2 style="text-align:center">Prerequisites for step 1</h2>
+            <p style="font-size:1.3em;">Clean-up the storage of taxonomy terms:</p>
+            <ul>
+              <li>term hierarchy should be a field,
+              <li>bundle should be stored as is.
+            </ul>
+        </div>
+
+        <div class="slide" style="text-align:center">
+            <h2>Possible step 2: adopt PHPCR</h2>
+            <h2><img src="drupal-step2.png" alt="" /></h2>
+        </div>
+
+        <div class="slide">
+            <h2 style="text-align:center">Prerequisites for step 2</h2>
+            <h3>On the Drupal side:</h3>
+            <ul>
+              <li>Design a PHPCR schema for our entity/field schema,
+              <li>Adopt Doctrine DBAL as a replacement for DBTNG or re-implement Jackalope SQL on top of DBTNG.
+            </ul>
+            <h3>On PHPCR / Jackalope:</h3>
+            <ul>
+              <li>Improve the scalability of the Jackalope SQL implementation,
+              <li>Consider implementing a one-table-per-workspace storage,
+              <li>Generally contribute to improve the Jackalope SQL implementation.
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2 style="text-align:center">Possible step 3: refactor Search</h2>
+            <p style="font-size:1.3em;">PHPCR includes full-text search (but this is not implemented in the Doctrine DBAL). We could contribute it using  the current SQL full-text search implementation from the Search module.</p>
         </div>
 
         <div class="slide">
